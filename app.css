@@ -1,0 +1,121 @@
+body {
+	background-color: black;
+	margin: 0;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.container {
+	max-width: 45rem;
+	margin: 1.5rem auto;
+	color: white;
+}
+
+.row {
+	display: flex;
+}
+
+.square {
+	width: 30%;
+	background-color: white;
+	padding-bottom: 30%;
+	margin: 1.66%;
+	border-radius: 20%;
+	transition: background-color .5s;
+	-webkit-transition: background-color .5s;
+	-moz-transition: background-color .5s;
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	background-color: steelblue;
+	margin: 0;
+	font-weight: normal;
+	text-transform: uppercase;
+	line-height: 1.1;
+	padding: 1rem 0;
+}
+#RGB {
+	font-size: 3rem;
+}
+#gameBar {
+	padding: .1rem;
+	background-color: white;
+	height: 30px;
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-transform: uppercase;
+}
+
+#message {
+	display: inline-block;
+	width: 15%;
+}
+
+#countdownDiv {
+	text-align: center;
+}
+
+/* .selected {
+	color: white;
+	background-color: steelblue;
+} */
+
+button {
+	border: none;
+	background: none;
+	height: 100%;
+	text-transform: uppercase;
+	color: steelblue;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-size: inherit;
+	font-family: 'Courier New', Courier, monospace;
+	transition: all .3s;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	outline: none;
+}
+
+button:hover {
+	color: white;
+	background-color: steelblue;
+}
+
+#startGameButtonDiv {
+	text-align: center;
+}
+
+.invisible {
+	display: none;
+}
+
+.modal {
+	z-index: 2; /* Sit on top */
+	color: black;
+	position: absolute;
+	width: 40%;
+	top: 40%;
+	left: 30%;
+}
+
+/* Modal Content/Box */
+.modal-content {
+	padding: .5rem;
+	background-color: #fefefe;
+	margin: 0 auto; /* 15% from the top and centered */
+	border: 1px solid #888;
+	width: 60%; /* Could be more or less, depending on screen size */
+	text-align: center;
+}
+
+.modal-content h4 {
+	margin: 0;
+}
+
+.modal-content p {
+	text-align: left;
+	padding-left: 30%;
+}
