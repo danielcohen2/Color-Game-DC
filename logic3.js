@@ -2,27 +2,21 @@
 window.addEventListener('load', init);
 //sets up all click listeners
 function init() {
-	preGame();
 	setUpGameClickListeners();
 }
 
-var countdownDivNumber = document.querySelector('#countdownDivNumber');
-var startButtonClicked = false;
-function preGame() {
-	var startGameButtons = document.querySelectorAll('.startGameButton');
-	for (var i = 0; i < startGameButtons.length; i++) {
-		startGameButtons[i].addEventListener('click', function() {
-			//only allow this button to be clicked once
-			if (!startButtonClicked) {
-				var seconds = 3; //3 second countdown
-				document.querySelector('#countdownDivFor').textContent = 'Game ';
-				revealCountdown();
-				countdownTimer(seconds, countdownDivNumber, gameSetUp);
-			}
-			startButtonClicked = true;
-		});
-	}
+function setUpGameClickListeners() {
+	setUpGameStartButtons();
+	setUpRoundStartButtons();
+	setUpSquareListeners();
+	setUpPlayPauseButton();
+	// document.querySelector('.modal-close').addEventListener('click', function() {
+	// 	hidePostGameModal();
+	// });
 }
+
+var startButtonClicked = false;
+var roundButtonClicked = false;
 
 var messageDisplay = document.querySelector('#message');
 var gameTimeDisplay = document.querySelector('#time');
@@ -30,6 +24,7 @@ var round;
 var score;
 var lives;
 
+//run when startGame button is clicked
 function gameSetUp() {
 	hideNonGameThings();
 	messageDisplay.textContent = '';
@@ -45,19 +40,21 @@ var gameButtonClicked = false;
 
 function preRound() {
 	round++;
+	updateScoreboard();
+	clearRGB();
 	hideSquares();
-	setUpColorsAndSquaresForRound();
-	document.querySelector('#countdownDivFor').textContent = 'Round ' + round;
-	revealCountdown();
-	gamePauseButton.classList.add('invisible');
-	countdownTimer(3, countdownDivNumber, startRound);
+	hideGameButton();
+	roundButtonClicked = false;
+	revealPreRound();
+	// when preRoundStartButton is clicked will run startRound
 }
 
 function startRound() {
+	hidePreRound();
+	hideRoundCountdown();
 	playingGame = true;
 	gameButtonClicked = false;
-	gamePauseButton.classList.remove('invisible');
-	hideCountdown();
+	revealGameButton();
 	resumeGame(10);
 }
 
@@ -68,16 +65,32 @@ function resumeGame(timeForTimer) {
 	countdownTimer(timeForTimer, gameTimeDisplay, roundTimerRunOut);
 }
 
-function setUpGameClickListeners() {
-	setUpSquares();
-	setUpPlayPauseButton();
-	// document.querySelector('.modal-close').addEventListener('click', function() {
-	// 	hidePostGameModal();
-	// });
+function setUpGameStartButtons() {
+	var startGameButtons = document.querySelectorAll('.startGameButton');
+	var seconds = 3;
+	for (var i = 0; i < startGameButtons.length; i++) {
+		startGameButtons[i].addEventListener('click', function() {
+			//only allow this button to be clicked once
+			if (!startButtonClicked) gameSetUp();
+			startButtonClicked = true;
+		});
+	}
 }
 
+function setUpRoundStartButtons() {
+	var startRoundButton = document.querySelector('#startRoundButton');
+	var seconds = 3;
+	startRoundButton.addEventListener('click', function() {
+		if (!roundButtonClicked) {
+			setUpColorsAndSquaresForRound();
+			revealRoundCountdown();
+			countdownTimer(seconds, roundCountdownDivNumber, startRound);
+		}
+		roundButtonClicked = true;
+	});
+}
 var squares = document.querySelectorAll('.square');
-function setUpSquares() {
+function setUpSquareListeners() {
 	//add event listeners to squares
 	for (let index = 0; index < squares.length; index++) {
 		//add click listeners that check to see if the square you click is the same as the pickedColor
@@ -153,6 +166,11 @@ function setUpColorsAndSquaresForRound() {
 	selectedColorForRound.textContent = pickedColor;
 	//change colors of the squares on the page
 	for (let i = 0; i < squares.length; i++) squares[i].style.backgroundColor = colors[i];
+}
+
+function clearRGB() {
+	var selectedColorForRound = document.querySelector('#RGB');
+	selectedColorForRound.textContent = 'RGB';
 }
 
 function pickColor(colors) {
@@ -248,26 +266,25 @@ function gameOverPopUp() {
 	revealPostGameModal();
 }
 
-function revealCountdown() {
-	document.querySelector('#countdownDiv').classList.remove('invisible');
+function revealPreRound() {
+	document.querySelector('#preRound').classList.remove('invisible');
 }
 
-function hideCountdown() {
-	document.querySelector('#countdownDiv').classList.add('invisible');
+function hidePreRound() {
+	document.querySelector('#preRound').classList.add('invisible');
+}
+
+function revealRoundCountdown() {
+	document.querySelector('#roundCountdownDiv').classList.remove('invisible');
+}
+
+function hideRoundCountdown() {
+	document.querySelector('#roundCountdownDiv').classList.add('invisible');
 }
 
 function hideNonGameThings() {
-	document.querySelector('#instructions').classList.add('invisible');
-	hideStartGameButton();
+	document.querySelector('#preGame').classList.add('invisible');
 	hidePostGameModal();
-}
-
-function hideStartGameButton() {
-	document.querySelector('#startGameButtonDiv').classList.add('invisible');
-}
-
-function revealStartGameButton() {
-	document.querySelector('#startGameButtonDiv').classList.remove('invisible');
 }
 
 function hideGameButton() {

@@ -42,17 +42,18 @@
             <div class="square"></div>
         </div>
     </div>
-    <div id="instructions" class="container">
-        <p> What is RGB? </p>
-        <p> The RGB color model is an additive color model in which red, green, and blue light are added together in
-            various ways to reproduce a broad array of colors. Each parameter (red, green, and blue) defines the
-            intensity of the color as an integer between 0 and 255. For example, rgb(0, 0, 255) is rendered as blue,
-            because the blue parameter is set to its highest value (255) and the others are set to 0.
+    <div id="preGame" class="container">
+        <div id="instructions">
+            <p> What is RGB? </p>
+            <p> The RGB color model is an additive color model in which red, green, and blue light are added together in
+                various ways to reproduce a broad array of colors. Each parameter (red, green, and blue) defines the
+                intensity of the color as an integer between 0 and 255. For example, rgb(0, 0, 255) is rendered as blue,
+                because the blue parameter is set to its highest value (255) and the others are set to 0.
             <p> How to Play? </p>
             <p>
                 <!-- The idea of the game is to guess the correct square that indicates the RGB color that will show in the
-                header. -->
-                At the beginning of each round, you will have 3 seconds to study the RGB color at the top of the
+                    header. -->
+                When you start the round you will have 3 seconds to study the RGB color at the top of the
                 page. Then, six squares of different colors will appear and you will have to guess the correct square
                 that indicates the RGB color.
                 Each round has a 10 second countdown so the quicker you guess, the more points you will receive.
@@ -62,13 +63,19 @@
                 survive? How many points can you score? Time to find out...
             </p>
             <p> Ready to Play? </p>
-    </div>
-    <div id="startGame">
+        </div>
         <div id="startGameButtonDiv">
             <button class="startGameButton"> Start Game </button>
         </div>
-        <div id="countdownDiv" class="container invisible"><span id="countdownDivFor">Game</span> starting in... <span
-                id="countdownDivNumber"></span>
+    </div>
+    <div id="preRound" class="invisible">
+        <div id="startGameButtonDiv" class="container">
+            <div> Once you click the start round button you will have 3 seconds to study the next round's RGB color in
+                the header above</div>
+            <div><button id="startRoundButton"> Start Round <span class="roundNum"></span> </button></div>
+            <div id="roundCountdownDiv" class="container invisible">Round <span class="roundNum"></span> starting in...
+                <span id="roundCountdownDivNumber"></span>
+            </div>
         </div>
     </div>
     <div id="postGameModal" class="modal container invisible">
@@ -77,14 +84,11 @@
             <h4> Game Over! </h4>
             <!-- <span class="modal-close">&times;</span> -->
             <p>
-                Round: <span class="roundNum"> 10 </span> <br>
-                Score: <span class="scoreNum"> 10000
+                Round: <span class="roundNum"> </span> <br>
+                Score: <span class="scoreNum">
                 </span>
             </p>
             <button class="startGameButton"> Play Again? </button>
-            <!-- <div id="modalStartGame">
-            </div> -->
-
         </div>
 
     </div>
