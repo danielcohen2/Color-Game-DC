@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 const mongoose = require("mongoose");
 mongoose
 	.connect(
-		"mongodb+srv://danielcohen:<aYsKMNA9QAMkmxn>@cluster0.whaez.mongodb.net/<dbname>?retryWrites=true&w=majority",
+		"mongodb+srv://danielcohen:aYsKMNA9QAMkmxn@cluster0.whaez.mongodb.net/colorGameHighScores?retryWrites=true&w=majority",
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true
