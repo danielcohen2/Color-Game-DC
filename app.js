@@ -11,10 +11,13 @@ app.set("view engine", "ejs");
 
 const mongoose = require("mongoose");
 mongoose
-	.connect("mongodb://localhost:27017/color_game_highscores", {
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	})
+	.connect(
+		"mongodb+srv://danielcohen:<aYsKMNA9QAMkmxn>@cluster0.whaez.mongodb.net/<dbname>?retryWrites=true&w=majority",
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true
+		}
+	)
 	.then(() => console.log("Connected to DB!"))
 	.catch((error) => console.log(error.message));
 
